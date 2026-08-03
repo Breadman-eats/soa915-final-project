@@ -2,8 +2,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 import itertools
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="User Service")
+Instrumentator().instrument(app).expose(app)
 
 # --- In-memory "database" (just a Python dict for now) ---
 users_db = {}

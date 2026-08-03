@@ -1,8 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import itertools
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="Order Service")
+Instrumentator().instrument(app).expose(app)
 
 # --- In-memory "database" ---
 orders_db = {}
